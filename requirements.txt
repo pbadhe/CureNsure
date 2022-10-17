@@ -1,0 +1,5 @@
+flask
+firebase_admin
+bcrypt
+uuid
+logging

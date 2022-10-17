@@ -1,0 +1,26 @@
+User: (user_id, same as login_id)
+Diagram
++ LoginID
++ RoleID (Doc, Patient, Agent)
+
+Role: (role_id)
+Diagram - ~roleDesc~
+
+Login: (login_id)
+Diagram -
+~login_role_id~
+
+# A row in doc table is only valid and can be inserted when the doctor signs up.
+Doctor: (user_id - FK) 
+*All attr of users*
++ Specialization
++ Hospital Name or hospital_id if a new table.
+
+Future Requirement:
+Hospital - (hospital_id)
++ Attrs
+
+InsuranceAgent - (agent_id)
++ Attrs to be discussed
+
+
