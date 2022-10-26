@@ -47,7 +47,8 @@ def docSchema(db, user_id):
 	login_data = {
 		u'speciality': u'Cardiologist',
 		#HospitalID or just Hospital Name? 
-		u'hospital_name': u'IUHospital'
+		u'hospital_name': u'IUHospital',
+		u'supports_covid': u'1' #0 no, 1 yes
 	}
 	db.collection(u'Doctor').document(user_id).set(login_data)
 

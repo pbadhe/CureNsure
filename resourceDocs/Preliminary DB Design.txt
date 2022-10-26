@@ -18,9 +18,17 @@ Doctor: (user_id - FK)
 
 Future Requirement:
 Hospital - (hospital_id)
-+ Attrs
++ Hospital Name
++ Location
++ Primary Contact
++ Preferred Insurance Agent Company Id/Company Id
 
 InsuranceAgent - (agent_id)
-+ Attrs to be discussed
+*All attr of users*
++ Insurance Plan Ids marketed
++ Insurance Company Id
++ Alloted premium range
++ Company correspondence email
++ Company correspondence phone
 
 

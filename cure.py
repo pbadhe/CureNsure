@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template
 from firebase_admin import credentials, firestore, initialize_app
 from createSchema import createSampleSchemaData
 import logging
+import crypt
 
 app = Flask(__name__)
 
@@ -54,7 +55,7 @@ def create():
 @app.route('/update', methods=['POST', 'PUT'])
 def update():
     """
-        Updates a document into "Doctor" collection. Provide ?id= as a field in URL. 
+        Updates a document into "Doctor" collection. Id required in POST. 
     """
     try:
         id = request.json['id']
@@ -74,6 +75,42 @@ def delete():
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
+
+@app.route('/logout',methods=['GET', 'POST'])
+def logout():
+    #TODO reset the cookies. Invalid current cookie. 
+    return
+
+@app.route('/login',methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        if request.json['request'] == 'login':
+            login_input_username = request.json['userid']
+            login_input_password = request.json['password']
+            try:
+                for doc in db.collection('Login').stream():
+                    if login_input_username == doc.to_dict()['login_username']:
+                        dbHashedPw = doc.to_dict()['login_password']
+                        if crypt.checkPassword(login_input_password, dbHashedPw):
+                            logging.debug(f'Login successful for {login_input_username} user')
+                            return jsonify({"Login Success": "True"}), 200
+                        else:
+                            return jsonify({"Login Success": "Invalid Password"}), 401
+
+                return jsonify({"Login Success": "Invalid Username"}), 401
+            except Exception:
+                logging.debug(f'Login failed for {login_input_username}', Exception)
+                return jsonify(f'Internal application error',Exception), 401
+
+@app.route('/',methods=['GET', 'POST'])
+def ssd():
+    return render_template("index.html")
+
+port = int(os.environ.get('PORT', 8080))
+if __name__ == '__main__':
+    app.run(threaded=True, host='0.0.0.0', port=port)
+
+
 
 @app.route('/',methods=['GET', 'POST'])
 def ssd():
