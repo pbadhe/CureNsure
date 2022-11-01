@@ -9,6 +9,8 @@ def createSampleSchemaData(db):
 	#User 
 	try:
 		user_data = {
+			u'first_name': u'Oleg',
+			u'last_name': u'Lyashchuk',
             u'user_name': u'idkas',
             u'user_mobile': u'123134234',
             u'user_email': u'oleg@iu.edu',

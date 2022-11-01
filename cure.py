@@ -4,6 +4,7 @@ from firebase_admin import credentials, firestore, initialize_app
 from createSchema import createSampleSchemaData
 import logging
 import crypt
+import filterDoc
 
 app = Flask(__name__)
 
@@ -36,7 +37,7 @@ def read():
                 k = ref_user.document(doc.id)
                 logging.debug(f'{k.id} => {k.get().to_dict()}')
                 outDocs.append(f'{k.id} => {k.get().to_dict()}')
-                return jsonify(outDocs), 200
+            return jsonify(outDocs), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
 
@@ -84,6 +85,7 @@ def logout():
 @app.route('/login',methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        # {"userid": "idkas", "password": "hobbies", "request":"login" }
         if request.json['request'] == 'login':
             login_input_username = request.json['userid']
             login_input_password = request.json['password']
@@ -102,6 +104,26 @@ def login():
                 logging.debug(f'Login failed for {login_input_username}', Exception)
                 return jsonify(f'Internal application error',Exception), 401
 
+@app.route('/filterDoc', methods=['GET', 'POST'])
+def filter_doc():
+    if request.method == 'POST':
+        # {"first_name" || "last_name": "LastNameInUserCollection", "request": "filterByname"}
+        if request.json['request'] == 'filterByname':
+            return filterDoc.filterDocByName(db,request)
+        
+        # {"request": "filterBysupports_covid"}
+        if request.json['request'] == 'filterBysupports_covid':
+            return filterDoc.filterDocBySupportsCovid(db,request)
+        
+        # {"speciality": "DoctorDefined", "request": "filterByspeciality"}  
+        if request.json['request'] == 'filterByspeciality':
+            return filterDoc.filterBySpeciality(db,request)
+                    
+        # {"hospital_name": "DoctorDefined", "request": "filterByhospital_name"} 
+        if request.json['request'] == 'filterByhospital_name':
+            return filterDoc.filterByHospital(db,request)
+
+
 @app.route('/',methods=['GET', 'POST'])
 def ssd():
     return render_template("index.html")
@@ -109,17 +131,5 @@ def ssd():
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
     app.run(threaded=True, host='0.0.0.0', port=port)
-
-
-
-@app.route('/',methods=['GET', 'POST'])
-def ssd():
-    return render_template("index.html")
-
-port = int(os.environ.get('PORT', 8080))
-if __name__ == '__main__':
-    app.run(threaded=True, host='0.0.0.0', port=port)
-
-#ProjectNumber: 117430924045-compute@developer.gserviceaccount.com
 
 
