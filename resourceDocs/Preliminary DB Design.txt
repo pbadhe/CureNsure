@@ -1,7 +1,17 @@
 User: (user_id, same as login_id)
-Diagram
-+ LoginID
-+ RoleID (Doc, Patient, Agent)
++ user_first_name
++ user_last_name
++ user_mobile
++ user_email
++ user_title
++ user_gender
++ user_age
++ user_height
++ user_weight
++ user_address
++ user_city
++ user_zipcode
++ role_id (Doc 2, Patient 1, Agent 3)
 
 Role: (role_id)
 Diagram - ~roleDesc~

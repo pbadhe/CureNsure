@@ -1,22 +1,27 @@
 #Firestore DB: FlaskFire
 
-from flask import Flask, request, jsonify
-import uuid
-import crypt
+from flask import jsonify
+import uuid, crypt, login
 
 def createSampleSchemaData(db):
 	user_id = ''
 	#User 
 	try:
 		user_data = {
-			u'first_name': u'Oleg',
-			u'last_name': u'Lyashchuk',
-            u'user_name': u'idkas',
+			u'user_first_name': u'Oleg',
+			u'user_last_name': u'Lyashchuk',
             u'user_mobile': u'123134234',
             u'user_email': u'oleg@iu.edu',
             u'user_address': u'Bloomington, IN',
-            u'role_id': u'1', #Patient 1, Doc 2, Agent 3
-            u'login_username': u'idkasOleg'
+			u'user_title': u'Mr',
+			u'user_gender': u'Male',
+			u'user_age': u'34',
+			u'user_height': u'182',
+			u'user_weight': u'68',
+			u'user_address': u'Ukraine',
+			u'user_city': u'Kyiv',
+			u'user_zipcode': u'1231232',
+            u'role_id': u'1' #Patient 1, Doc 2, Agent 3
         }
 		user_id = str(uuid.uuid4())[:8]
 		db.collection(u'User').document(user_id).set(user_data)
@@ -31,11 +36,11 @@ def createSampleSchemaData(db):
 def loginSchema(db, user_id):
 	hashedPw = crypt.encrypt("hobbies")
 	login_data = {
-		#TODO check login_username duplication
 		u'login_username': u'idkas',
 		u'login_password': hashedPw
 	}
-	db.collection(u'Login').document(user_id).set(login_data)
+	if not login.userExists("idkas"):
+		db.collection(u'Login').document(user_id).set(login_data)
 
 def roleSchema(db):
 	role_data = {
@@ -53,15 +58,3 @@ def docSchema(db, user_id):
 		u'supports_covid': u'1' #0 no, 1 yes
 	}
 	db.collection(u'Doctor').document(user_id).set(login_data)
-
-# def delete_collection(coll_ref, batch_size):
-#     docs = coll_ref.limit(batch_size).stream()
-#     deleted = 0
-
-#     for doc in docs:
-#         print(f'Deleting doc {doc.id} => {doc.to_dict()}')
-#         doc.reference.delete()
-#         deleted = deleted + 1
-
-#     if deleted >= batch_size:
-#         return delete_collection(coll_ref, batch_size)

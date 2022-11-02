@@ -2,9 +2,7 @@ import os
 from flask import Flask, request, jsonify, render_template
 from firebase_admin import credentials, firestore, initialize_app
 from createSchema import createSampleSchemaData
-import logging
-import crypt
-import filterDoc
+import logging, filterDoc, login
 
 app = Flask(__name__)
 
@@ -19,24 +17,20 @@ def createSample():
 
 @app.route('/list', methods=['GET'])
 def read():
-    """
-        read() : Fetches "Doctor" data & related details from "User"
-        todo_id : id passed in the URL
-    """
+    #     read() : Fetches "User" details and related fields if the user is also a "Doctor".
+    #     todo_id : id passed in the URL
     try:
         ref_doc = db.collection(u'Doctor')
         ref_user = db.collection(u'User')
         # Check if ID was passed to URL query
         todo_id = request.args.get('id')
         if todo_id:
-            todo = ref_doc.document(todo_id).get()
-            return jsonify(todo.to_dict()), 200
+            userDoc = ref_user.document(todo_id).get()
+            return jsonify(filterDoc.unifyDoctorFieldsToDict(db, userDoc)), 200
         else:
             outDocs = []
-            for doc in ref_doc.stream():
-                k = ref_user.document(doc.id)
-                logging.debug(f'{k.id} => {k.get().to_dict()}')
-                outDocs.append(f'{k.id} => {k.get().to_dict()}')
+            for userDoc in ref_user.stream():
+                outDocs.append(f'{userDoc.id} => {filterDoc.unifyDoctorFieldsToDict(db, userDoc)}')
             return jsonify(outDocs), 200
     except Exception as e:
         return f"An Error Occurred: {e}"
@@ -83,31 +77,27 @@ def logout():
     return
 
 @app.route('/login',methods=['GET', 'POST'])
-def login():
+def login1():
     if request.method == 'POST':
         # {"userid": "idkas", "password": "hobbies", "request":"login" }
         if request.json['request'] == 'login':
-            login_input_username = request.json['userid']
-            login_input_password = request.json['password']
-            try:
-                for doc in db.collection('Login').stream():
-                    if login_input_username == doc.to_dict()['login_username']:
-                        dbHashedPw = doc.to_dict()['login_password']
-                        if crypt.checkPassword(login_input_password, dbHashedPw):
-                            logging.debug(f'Login successful for {login_input_username} user')
-                            return jsonify({"Login Success": "True"}), 200
-                        else:
-                            return jsonify({"Login Success": "Invalid Password"}), 401
+            return login.login(db, request.json)        
+        
+        # {"request":"signUp", "user_first_name": "Neil", "user_last_name": "Armstrong", "user_mobile": "1232342488", "user_email": "neil@armstrong.com", "user_title": "Mr", "user_gender": "Male", "user_age": "92", "user_height": "182", "user_weight": "68", "user_address": "02, Crater Avenue", "user_city": "MoonCity", "user_zipcode": "3825968", "login_username": "neilbaba", "login_password": "neilbaba"}
+        if request.json['request'] == 'signUp':
+            return login.createUser(db, request.json)
 
-                return jsonify({"Login Success": "Invalid Username"}), 401
-            except Exception:
-                logging.debug(f'Login failed for {login_input_username}', Exception)
-                return jsonify(f'Internal application error',Exception), 401
+        # {"login_username": "idkas", "request":"ifExists" }
+        if request.json['request'] == 'ifExists':
+            if login.userExists(db, request.json["login_username"]):
+                return jsonify({"success": True}), 200
+            else:
+                return jsonify({"success": False}), 200
 
 @app.route('/filterDoc', methods=['GET', 'POST'])
 def filter_doc():
     if request.method == 'POST':
-        # {"first_name" || "last_name": "LastNameInUserCollection", "request": "filterByname"}
+        # {"user_first_name" || "user_last_name": "X", "request": "filterByname"}
         if request.json['request'] == 'filterByname':
             return filterDoc.filterDocByName(db,request)
         
@@ -115,11 +105,11 @@ def filter_doc():
         if request.json['request'] == 'filterBysupports_covid':
             return filterDoc.filterDocBySupportsCovid(db,request)
         
-        # {"speciality": "DoctorDefined", "request": "filterByspeciality"}  
+        # {"speciality": "Cardiologist", "request": "filterByspeciality"}  
         if request.json['request'] == 'filterByspeciality':
             return filterDoc.filterBySpeciality(db,request)
                     
-        # {"hospital_name": "DoctorDefined", "request": "filterByhospital_name"} 
+        # {"hospital_name": "IUHospital", "request": "filterByhospital_name"} 
         if request.json['request'] == 'filterByhospital_name':
             return filterDoc.filterByHospital(db,request)
 
