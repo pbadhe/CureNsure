@@ -2,9 +2,11 @@ import os
 from flask import Flask, request, jsonify, render_template
 from firebase_admin import credentials, firestore, initialize_app
 from createSchema import createSampleSchemaData
-import logging, filterDoc, login
+import filterDoc, login
+from flask_cors import CORS 
 
 app = Flask(__name__)
+CORS(app)
 
 cred = credentials.Certificate('credentials/flaskfiremekey.json')
 default_app = initialize_app(cred)

@@ -3,3 +3,4 @@ firebase_admin
 bcrypt
 uuid
 logging
+flask_cors
