@@ -1,0 +1,260 @@
+{
+	"info": {
+		"_postman_id": "3b9f79a2-4bf9-436b-9d12-25a857728def",
+		"name": "Localhost",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23901923"
+	},
+	"item": [
+		{
+			"name": "Filter",
+			"item": [
+				{
+					"name": "Filter Doctor by Speciality",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"speciality\":\"Cardiologist\", \"request\": \"filterByspeciality\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/filterDoc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filterDoc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Doctor by Supports Covid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"filterBysupports_covid\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/filterDoc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filterDoc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Doctor by Name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user_last_name\":\"Nani\", \"request\": \"filterByname\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/filterDoc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filterDoc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Doctor by Hospital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"hospital_name\":\"IUHospital\", \"request\": \"filterByhospital_name\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/filterDoc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"filterDoc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login Signup",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userid\": \"idkas\", \"password\": \"hobbies\", \"request\":\"login\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IfUserExists",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"login_username\": \"idkas\", \"request\":\"ifExists\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\":\"signUp\",\r\n\"user_first_name\": \"Shinchan\",\r\n\"user_last_name\": \"Patil\",\r\n\"user_mobile\": \"1232342488\",\r\n\"user_email\": \"shinchan@patil.com\",\r\n\"user_title\": \"Mr\",\r\n\"user_gender\": \"Male\",\r\n\"user_age\": \"12\",\r\n\"user_height\": \"182\",\r\n\"user_weight\": \"68\",\r\n\"user_address\": \"Hungama TV\",\r\n\"user_city\": \"Hungama\",\r\n\"user_zipcode\": \"1231232\",\r\n\"login_username\": \"shinchanbaba\",\r\n\"login_password\": \"shinchanbaba\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET ALL fields user /list?id=",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users Unified",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/list?id=3f4acd25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"list"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3f4acd25"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,44 @@
+User: (user_id, same as login_id)
++ user_first_name
++ user_last_name
++ user_mobile
++ user_email
++ user_title
++ user_gender
++ user_age
++ user_height
++ user_weight
++ user_address
++ user_city
++ user_zipcode
++ role_id (Doc 2, Patient 1, Agent 3)
+
+Role: (role_id)
+Diagram - ~roleDesc~
+
+Login: (login_id)
+Diagram -
+~login_role_id~
+
+# A row in doc table is only valid and can be inserted when the doctor signs up.
+Doctor: (user_id - FK) 
+*All attr of users*
++ Specialization
++ Hospital Name or hospital_id if a new table.
+
+Future Requirement:
+Hospital - (hospital_id)
++ Hospital Name
++ Location
++ Primary Contact
++ Preferred Insurance Agent Company Id/Company Id
+
+InsuranceAgent - (agent_id)
+*All attr of users*
++ Insurance Plan Ids marketed
++ Insurance Company Id
++ Alloted premium range
++ Company correspondence email
++ Company correspondence phone
+
+
