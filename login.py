@@ -1,5 +1,5 @@
 from flask import jsonify
-import logging, crypt, uuid
+import cryptify, uuid
 
 def login(db, requestDict):
     login_input_username = requestDict['userid']
@@ -8,24 +8,21 @@ def login(db, requestDict):
         for doc in db.collection('Login').stream():
             if login_input_username == doc.to_dict()['login_username']:
                 dbHashedPw = doc.to_dict()['login_password']
-                if crypt.checkPassword(login_input_password, dbHashedPw):
-                    logging.debug(f'Login successful for {login_input_username} user')
-                    return jsonify({"Login Success": True, "id":str(doc.id)}), 200
+                if cryptify.checkPassword(login_input_password, dbHashedPw):
+                    return jsonify({"Login_Success": True, "id":str(doc.id)}), 200
                 else:
-                    return jsonify({"Login Success": "Invalid Password"}), 401
+                    return jsonify({"Login_Success": "Invalid Password"}), 401
 
-        return jsonify({"Login Success": "Invalid Username"}), 401
+        return jsonify({"Login_Success": "Invalid Username"}), 401
     except Exception as e:
-        logging.debug(f'Login failed for {login_input_username}', e)
         return jsonify(f'Internal application error',e), 401
 
 def createUser(db, requestDict):
     requestDict.pop("request")
-    requestDict["role_id"] = "1"
     login_username = requestDict.pop("login_username")
 
     if not userExists(db, login_username):
-        hashedPw = crypt.encrypt(requestDict.pop("login_password"))
+        hashedPw = cryptify.encrypt(requestDict.pop("login_password"))
         try:
             user_id = str(uuid.uuid4())[:8]
             db.collection(u'User').document(user_id).set(requestDict)

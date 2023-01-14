@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Filter",
+			"name": "FilterDoc",
 			"item": [
 				{
 					"name": "Filter Doctor by Speciality",
@@ -35,7 +35,66 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Filter Doctor by Speciality",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"speciality\":\"Cardiologist\", \"request\": \"filterByspeciality\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/filterDoc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"filterDoc"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Dec 2022 04:06:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "315"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"080b730f\": {\n            \"hospital_name\": \"IUHospital\",\n            \"role_id\": \"2\",\n            \"speciality\": \"Cardiologist\",\n            \"supports_covid\": 19,\n            \"user_address\": \"Bloomington, IN\",\n            \"user_email\": \"oleg@iu.edu\",\n            \"user_first_name\": \"Oleg\",\n            \"user_gender\": \"Trans\",\n            \"user_last_name\": \"Lyashchuk\",\n            \"user_mobile\": \"123134234\",\n            \"user_weight\": \"1234\",\n            \"user_zipcode\": \"232311\"\n        }\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "Filter Doctor by Supports Covid",
@@ -161,7 +220,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"login_username\": \"idkas\", \"request\":\"ifExists\" }",
+							"raw": "{\"login_username\": \"idkas@gmail.com\", \"request\":\"ifExists\" }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -189,7 +248,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"request\":\"signUp\",\r\n\"user_first_name\": \"Shinchan\",\r\n\"user_last_name\": \"Patil\",\r\n\"user_mobile\": \"1232342488\",\r\n\"user_email\": \"shinchan@patil.com\",\r\n\"user_title\": \"Mr\",\r\n\"user_gender\": \"Male\",\r\n\"user_age\": \"12\",\r\n\"user_height\": \"182\",\r\n\"user_weight\": \"68\",\r\n\"user_address\": \"Hungama TV\",\r\n\"user_city\": \"Hungama\",\r\n\"user_zipcode\": \"1231232\",\r\n\"login_username\": \"shinchanbaba\",\r\n\"login_password\": \"shinchanbaba\"}",
+							"raw": "{\"request\":\"signUp\",\r\n\"user_first_name\": \"Agent47\",\r\n\"user_last_name\": \"Patil\",\r\n\"user_mobile\": \"1232342488\",\r\n\"user_email\": \"47@gmail.com\",\r\n\"user_title\": \"Mr\",\r\n\"user_gender\": \"Male\",\r\n\"user_age\": \"12\",\r\n\"user_height\": \"182\",\r\n\"user_weight\": \"68\",\r\n\"user_address\": \"NonJudgemental TV\",\r\n\"user_city\": \"Bloomington\",\r\n\"user_zipcode\": \"75674\",\r\n\"login_username\": \"agent47baba\",\r\n\"login_password\": \"agent47baba\",\r\n\"role_id\": 1}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -213,26 +272,881 @@
 			]
 		},
 		{
-			"name": "GET ALL fields user /list?id=",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/list",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"list"
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Schedule Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"schedule_appointment\", \"appointment_id\": \"4e46dd4c\", \"patient_user_id\": \"bc9d6690\", \"note\": \"Evening Floor\", \"type\": \"general\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ex",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"schedule_appointment\", \"appointment_id\": \"a01bfe4c\", \"patient_user_id\": \"bc9d6690\", \"note\": \"Evening Floor\", \"type\": \"general\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Dec 2022 04:39:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Slot_Scheduled\": true,\n    \"appointment_id\": \"a01bfe4c\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Needs Bed Schedule Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"schedule_appointment\", \"appointment_id\": \"a01bfe4c\", \"patient_user_id\": \"bc9d6690\", \"note\": \"Evening Floor\", \"type\": \"general\", \"needs_bed\":\"True\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Doctor Appointments",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"view_doctor_appointments\", \"doc_user_id\": \"080b730f\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View Doctor Appointments",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"view_doctor_appointments\", \"doc_user_id\": \"3f4acd25\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Dec 2022 04:13:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "303"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"07845036\": {\n            \"doc_user_id\": \"3f4acd25\",\n            \"note\": \"Meet me in the North cabin\",\n            \"patient_user_id\": \"bc9d6690\",\n            \"time\": \"2022-11-13T23:31:27\",\n            \"type\": \"general\"\n        }\n    },\n    {\n        \"122e44eb\": {\n            \"doc_user_id\": \"3f4acd25\",\n            \"note\": \"Meet me in the North cabin\",\n            \"patient_user_id\": \"7fa7c03e\",\n            \"time\": \"2022-11-13T5:31:59\",\n            \"type\": \"general\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "View Patient Appointments",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"view_patient_appointments\", \"doc_user_id\": \"bc9d6690\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upcoming Doctor Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"upcoming_doctor_appointments\", \"doc_user_id\": \"080b730f\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upcoming Patient Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"upcoming_patient_appointments\", \"patient_user_id\": \"bc9d6690\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upcoming Patient Appointment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"upcoming_patient_appointments\", \"patient_user_id\": \"bc9d6690\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Dec 2022 02:18:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "423"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"07845036\": {\n            \"doc_user_id\": \"3f4acd25\",\n            \"note\": \"Meet me in the North cabin\",\n            \"patient_user_id\": \"bc9d6690\",\n            \"time\": \"2022-12-25T23:31:27\",\n            \"type\": \"general\"\n        }\n    },\n    {\n        \"a01bfe4c\": {\n            \"doc_user_id\": \"080b730f\",\n            \"note\": \"Evening Floor\",\n            \"patient_user_id\": \"bc9d6690\",\n            \"time\": \"2022-12-29T5:29:17\",\n            \"type\": \"general\"\n        }\n    },\n    {\n        \"a362c0b3\": {\n            \"doc_user_id\": \"080b730f\",\n            \"note\": \"8th Floor\",\n            \"patient_user_id\": \"bc9d6690\",\n            \"time\": \"2022-12-24T6:37:39\",\n            \"type\": \"general\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "View Doctor Slots",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"view_doctor_slots\", \"doc_user_id\": \"080b730f\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View Doctor Slots",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"view_doctor_slots\", \"doc_user_id\": \"080b730f\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Dec 2022 04:21:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"35cd6cf9\": {\n            \"doc_user_id\": \"080b730f\",\n            \"note\": \"Just ME in the Cabin\",\n            \"time\": \"2022-11-13T7:36:55\"\n        }\n    },\n    {\n        \"3c4bb9c5\": {\n            \"doc_user_id\": \"080b730f\",\n            \"note\": \"3rd Floor\",\n            \"time\": \"2022-11-13T6:16:11\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add Doctor Slot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"add_doctor_slot\", \"doc_user_id\": \"080b730f\", \"time\": \"2022-11-19T3:43:42\", \"note\": \"Time added\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Supports Covid Beds",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"update_supports_covid_beds\", \"doc_user_id\": \"080b730f\", \"supports_covid\": 22}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/appointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Supports Covid Beds",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"update_supports_covid_beds\", \"doc_user_id\": \"080b730f\", \"supports_covid\": 3}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Dec 2022 04:35:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Status\": \"TotalBedsUpdated\"\n}"
+						}
 					]
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "GET Users Unified",
+			"name": "Insurance API",
+			"item": [
+				{
+					"name": "Choose Insurance Plan for User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"set_plan\", \"plan_id\": \"c02cbae8\",\"patient_user_id\": \"bc9d6690\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/insurance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insurance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Choose Insurance Plan for User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"set_plan\", \"plan_id\": \"c02cbae8\",\"patient_user_id\": \"bc9d6690\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/insurance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"insurance"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Dec 2022 03:54:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Plan_Set\": true,\n    \"plan_id\": \"c02cbae8\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Total Bill Insurance Plan for User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"get_total_and_recurring_bills\", \"plan_id\": \"c02cbae8\",\"patient_user_id\": \"bc9d6690\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/insurance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insurance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Total Bill Insurance Plan for User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"get_total_and_recurring_bills\", \"plan_id\": \"c02cbae8\",\"patient_user_id\": \"bc9d6690\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/insurance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"insurance"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Dec 2022 05:14:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Recurring_Amount\": \"$5732\",\n    \"Total_Billed_Amount\": \"$17196\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Insurance Plan by Agent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"add_IPlan\",\"agent_user_id\": \"bc9d6690\", \"plan_type\": \"diamond\", \"monthly_premium\":\"$0\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/insurance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insurance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Insurance Plan by Agent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"update_IPlan\",\"plan_id\": \"c02cbae8\", \"plan_type\": \"diamond\", \"monthly_premium\":\"$5732\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/insurance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insurance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View All Insurance Plans Based On Agent ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"request\": \"view_agent_plans\", \"agent_user_id\": \"6abd7094\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/insurance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insurance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View All Insurance Plans Based On Agent ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"request\": \"view_agent_plans\", \"agent_user_id\": \"bc9d6690\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/insurance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"insurance"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.2.2 Python/3.10.8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Dec 2022 04:23:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"agent_user_id\": \"bc9d6690\",\n        \"monthly_premium\": \"$1000\",\n        \"plan_type\": \"bronze\"\n    },\n    {\n        \"agent_user_id\": \"bc9d6690\",\n        \"monthly_premium\": \"$2500\",\n        \"plan_type\": \"gold\"\n    },\n    {\n        \"agent_user_id\": \"bc9d6690\",\n        \"monthly_premium\": \"$5732\",\n        \"plan_type\": \"diamond\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GET ALL Fields User /list?id=",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -250,6 +1164,249 @@
 						{
 							"key": "id",
 							"value": "3f4acd25"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Doctor Fields Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/list?id=3f4acd25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"list"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3f4acd25"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.10.8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 04:24:16 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "311"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"hospital_name\": \"IU Health Center in Absolute Demo!\",\n    \"id\": \"3f4acd25\",\n    \"role_id\": \"2\",\n    \"speciality\": \"Physician\",\n    \"user_address\": \"Bloomington, IN\",\n    \"user_email\": \"oleg@iu.edu\",\n    \"user_first_name\": \"Joe\",\n    \"user_gender\": \"Male\",\n    \"user_last_name\": \"Nani\",\n    \"user_mobile\": \"123134234\",\n    \"user_name\": \"idkas\",\n    \"user_zipcode\": \"23466433\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET ALL Users ALL Fields",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.10.8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 04:24:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1869"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"080b730f\": {\n            \"hospital_name\": \"IUHospital\",\n            \"role_id\": \"2\",\n            \"speciality\": \"Cardiologist\",\n            \"supports_covid\": 19,\n            \"user_address\": \"Bloomington, IN\",\n            \"user_email\": \"oleg@iu.edu\",\n            \"user_first_name\": \"Oleg\",\n            \"user_gender\": \"Trans\",\n            \"user_last_name\": \"Lyashchuk\",\n            \"user_mobile\": \"123134234\",\n            \"user_weight\": \"1234\",\n            \"user_zipcode\": \"232311\"\n        }\n    },\n    {\n        \"19f3b7a2\": {\n            \"role_id\": \"3\",\n            \"user_address\": \"America\",\n            \"user_city\": \"SanDiego\",\n            \"user_email\": \"jahnavi@agent.com\",\n            \"user_first_name\": \"Jahnavi\",\n            \"user_last_name\": \"lisal\",\n            \"user_mobile\": \"7264824343\",\n            \"user_title\": \"Agent\",\n            \"user_zipcode\": \"1231232\"\n        }\n    },\n    {\n        \"3f4acd25\": {\n            \"hospital_name\": \"IU Health Center in Absolute Demo!\",\n            \"id\": \"3f4acd25\",\n            \"role_id\": \"2\",\n            \"speciality\": \"Physician\",\n            \"user_address\": \"Bloomington, IN\",\n            \"user_email\": \"oleg@iu.edu\",\n            \"user_first_name\": \"Joe\",\n            \"user_gender\": \"Male\",\n            \"user_last_name\": \"Nani\",\n            \"user_mobile\": \"123134234\",\n            \"user_name\": \"idkas\",\n            \"user_zipcode\": \"23466433\"\n        }\n    },\n    {\n        \"6abd7094\": {\n            \"agency_name\": \"IUInsurance\",\n            \"customer_range\": \"bronze\",\n            \"role_id\": \"3\",\n            \"user_address\": \"America\",\n            \"user_city\": \"NYC\",\n            \"user_email\": \"oleg@agent.com\",\n            \"user_first_name\": \"broleg\",\n            \"user_last_name\": \"brolisalv\",\n            \"user_mobile\": \"123131241244234\",\n            \"user_title\": \"Agent\",\n            \"user_zipcode\": \"1231232\"\n        }\n    },\n    {\n        \"7fa7c03e\": {\n            \"role_id\": \"1\",\n            \"user_address\": \"Hungama TV\",\n            \"user_age\": \"12\",\n            \"user_city\": \"Hungama\",\n            \"user_email\": \"shinchan@patil.com\",\n            \"user_first_name\": \"Shinchan\",\n            \"user_gender\": \"Male\",\n            \"user_height\": \"182\",\n            \"user_last_name\": \"Patil\",\n            \"user_mobile\": \"1232342488\",\n            \"user_title\": \"Mr\",\n            \"user_weight\": \"68\",\n            \"user_zipcode\": \"1231232\"\n        }\n    },\n    {\n        \"bc9d6690\": {\n            \"plan_id\": \"c02cbae8\",\n            \"role_id\": \"1\",\n            \"total_contributed_amount\": [\n                \"$17196\",\n                \"$5732\"\n            ],\n            \"user_address\": \"02, Crater Avenue\",\n            \"user_age\": \"92\",\n            \"user_city\": \"MoonCity\",\n            \"user_email\": \"badhepranav@gmail.com\",\n            \"user_first_name\": \"Neil\",\n            \"user_gender\": \"Male\",\n            \"user_height\": \"182\",\n            \"user_last_name\": \"Armstrong\",\n            \"user_mobile\": \"1232342488\",\n            \"user_title\": \"Mr\",\n            \"user_weight\": \"68\",\n            \"user_zipcode\": \"3825968\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Update Doctor Fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": \"3f4acd25\", \"hospital_name\": \"IU Health Center in Absolute Demo 786!\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update IAgent Fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": \"6abd7094\", \"agency_name\": \"IU Insurance\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update ANY User fields",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": \"7fa7c03e\", \"user_city\": \"Mumbai\", \"user_mobile\": \"9999888823\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/updateUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"updateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/delete?id=Lol",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "Lol"
 						}
 					]
 				}

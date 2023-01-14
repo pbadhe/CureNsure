@@ -4,11 +4,11 @@ from flask import jsonify
 def mergeDocsToDict(doc1, doc2):
     return dict(list(doc1.to_dict().items()) + list(doc2.to_dict().items()))
 
-def unifyDoctorFieldsToDict(db, userDoc):
-    # for doc in dbDoc.stream():
-    dbDoc = db.collection('Doctor')
-    if dbDoc.document(userDoc.id).get().to_dict():
-        return mergeDocsToDict(dbDoc.document(userDoc.id).get(), userDoc)
+def unifyDoctorOrAgentFieldsToDict(db, userDoc):
+    if db.collection('Doctor').document(userDoc.id).get().to_dict():
+        return mergeDocsToDict(db.collection('Doctor').document(userDoc.id).get(), userDoc)
+    elif db.collection('IAgent').document(userDoc.id).get().to_dict():
+        return mergeDocsToDict(db.collection('IAgent').document(userDoc.id).get(), userDoc)
     else:
         return userDoc.to_dict()
 
@@ -27,7 +27,7 @@ def filterDocByName(db, request):
                 first = user.to_dict().get('user_first_name','')
                 last =  user.to_dict().get('user_last_name','')
                 if first == first_name or last == last_name:
-                    docFiltered.append(f'\'{doc.id}\':{mergeDocsToDict(doc,user)}')
+                    docFiltered.append({str(doc.id):mergeDocsToDict(doc,user)})
                 
         if len(docFiltered) > 0:
             return jsonify(docFiltered), 200
@@ -42,9 +42,9 @@ def filterDocBySupportsCovid(db, request):
         dbUser = db.collection(u'User')
         filteredDoctors = []
         for curr in dbDoc.stream():
-            if "1" == curr.to_dict().get('supports_covid',''):
+            if '' != curr.to_dict().get('supports_covid',''):
                 userDoc = dbUser.document(curr.id).get()
-                filteredDoctors.append(f'\'{curr.id}\':{mergeDocsToDict(userDoc, curr)}')
+                filteredDoctors.append({str(curr.id):mergeDocsToDict(userDoc, curr)})
 
         if len(filteredDoctors) > 0:
             return jsonify(filteredDoctors), 200
@@ -64,7 +64,7 @@ def filterBySpeciality(db, request):
         for curr in dbDoc.stream():
             if speciality == curr.to_dict()['speciality']:
                 userDoc = dbUser.document(curr.id).get()
-                filteredDoctors.append(f'\'{curr.id}\':{mergeDocsToDict(userDoc, curr)}')
+                filteredDoctors.append({str(curr.id):mergeDocsToDict(userDoc, curr)})
 
         if len(filteredDoctors) > 0:
             return jsonify(filteredDoctors), 200
@@ -83,7 +83,7 @@ def filterByHospital(db,request):
         for curr in dbDoc.stream():
             if hospital == curr.to_dict()['hospital_name']:
                 userDoc = dbUser.document(curr.id).get()
-                filteredDoctors.append(f'\'{curr.id}\':{mergeDocsToDict(userDoc, curr)}')
+                filteredDoctors.append({str(curr.id):mergeDocsToDict(userDoc, curr)})
 
         if len(filteredDoctors) > 0:
             return jsonify(filteredDoctors), 200

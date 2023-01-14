@@ -1,4 +1,4 @@
-User: (user_id, same as login_id)
+User: (user_id - PK)
 + user_first_name
 + user_last_name
 + user_mobile
@@ -11,34 +11,44 @@ User: (user_id, same as login_id)
 + user_address
 + user_city
 + user_zipcode
-+ role_id (Doc 2, Patient 1, Agent 3)
++ role_id ("1","2","3")
++ plan_id: xyz
++ total_contributed_amount: [123, 45] (Total, recurring)
 
-Role: (role_id)
-Diagram - ~roleDesc~
+Role: (RoleDoc)
+{1: "Patient", 2: "Doctor", 3: "Agent}
 
-Login: (login_id)
-Diagram -
-~login_role_id~
-
-# A row in doc table is only valid and can be inserted when the doctor signs up.
 Doctor: (user_id - FK) 
-*All attr of users*
+*Some attr of users*
 + Specialization
 + Hospital Name or hospital_id if a new table.
++ supports_covid: 9
 
-Future Requirement:
+Login: (user_id - FK)
++ login_password
++ login_username
+
+Appointment: (appointment_id, FK: user_id[patient], user_id[doctor])
++ doc_user_id
++ patient_user_id
++ time
++ note
++ type (general, follow-up, urgent)
+
+InsuranceAgent - (agent_id)
+*Some attr of users*
++ Insurance Company Name
++ Customer premium range
+
+InsurancePlans - (user_id[patient],user_id[agent])
++ agent_user_id
++ plan_type : #(bronze,gold,diamond)
++ monthly_premium: $ based on plan type
+
+Future Requirement If needed:
 Hospital - (hospital_id)
 + Hospital Name
 + Location
 + Primary Contact
 + Preferred Insurance Agent Company Id/Company Id
-
-InsuranceAgent - (agent_id)
-*All attr of users*
-+ Insurance Plan Ids marketed
-+ Insurance Company Id
-+ Alloted premium range
-+ Company correspondence email
-+ Company correspondence phone
-
 

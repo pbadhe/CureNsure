@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "af5d54ed-c15f-4439-95d0-068c1cf8a6a9",
+		"name": "Insurance API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20726473"
+	},
+	"item": [
+		{
+			"name": "Choose Insurance Plan for User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"request\": \"set_plan\", \"plan_id\": \"c02cbae8\",\"patient_user_id\": \"bc9d6690\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/insurance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"insurance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Insurance Plan by Agent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"request\": \"add_IPlan\",\"agent_user_id\": \"bc9d6690\", \"plan_type\": \"diamond\", \"monthly_premium\":\"$0\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/insurance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"insurance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View All Insurance Plans Based On Agent ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"request\": \"view_agent_plans\", \"agent_user_id\": \"bc9d6690\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/insurance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"insurance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
