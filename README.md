@@ -30,6 +30,12 @@ and serve the APIs.
 
 To setup the database, see the [resource documents](https://github.com/pbadhe/CureNsure/tree/main/resourceDocs) and use the file [```createSchema.py```](https://github.com/pbadhe/CureNsure/blob/main/createSchema.py) for schema creation. Routes for all the APIs can be found in [```cure.py```](https://github.com/pbadhe/CureNsure/blob/main/cure.py) with appropriate documentation. APIs can be tested by importing the example-ready, labelled [Postman API collection](https://github.com/pbadhe/CureNsure/blob/main/FlaskREST/Localhost.postman_collection.json) into the Postman Client. For more information on importing a json collection, visit [here](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#converting-postman-collections-from-v1-to-v2). The postman collection has all the API requests labelled with sample request and response.
 
+![image](https://user-images.githubusercontent.com/44113251/212607178-dfb9b81e-9e50-47cd-ac9a-593b2c4dd2a5.png)
+![image](https://user-images.githubusercontent.com/44113251/212607242-595927ff-5617-40de-a890-5b94e5607f0f.png)
+![image](https://user-images.githubusercontent.com/44113251/212606924-f085b51b-d55a-47d5-a8c1-c4e5a706212f.png)
+![image](https://user-images.githubusercontent.com/44113251/212606984-6ea60c87-2924-4080-99b6-75102546265b.png)
+
+
 For example, a simple GET request for searching details of a doctor whose ```id``` is known can be called in the following way: (Flask server's default port is 8080 when hosted locally)
 #### Request
 
